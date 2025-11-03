@@ -51,15 +51,18 @@ const Index = () => {
         </Button>
       </div>
 
-      <div className="border-t border-border/20 px-8 py-12">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="font-mono text-foreground/70 text-sm mb-6">&lt;/task?&gt;</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="border-t border-border/20 px-8 py-16">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-mono text-foreground/70 text-base mb-8">/&lt;task?&gt;</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3">
               /extract
             </div>
             <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3">
               /translate
+            </div>
+            <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3">
+              /&lt;&gt;
             </div>
           </div>
         </div>
