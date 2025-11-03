@@ -6,27 +6,27 @@ import { Button } from "@/components/ui/button";
 import { Code2 } from "lucide-react";
 
 const Index = () => {
-  const [viewState, setViewState] = useState<'glitch' | 'json'>('glitch');
+  const [viewState, setViewState] = useState<"glitch" | "json">("glitch");
   const [jsonData, setJsonData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('/core_data.json')
-      .then(res => res.json())
-      .then(data => setJsonData(data))
-      .catch(err => console.error('Error loading JSON:', err));
+    fetch("/core_data.json")
+      .then((res) => res.json())
+      .then((data) => setJsonData(data))
+      .catch((err) => console.error("Error loading JSON:", err));
   }, []);
 
   const cycleView = () => {
-    setViewState(prev => prev === 'glitch' ? 'json' : 'glitch');
+    setViewState((prev) => (prev === "glitch" ? "json" : "glitch"));
   };
 
   return (
     <div className="relative min-h-screen bg-background">
       <div className="flex min-h-screen flex-col items-center justify-center px-8">
         <div className="flex flex-col items-center gap-8">
-          {viewState === 'glitch' && (
+          {viewState === "glitch" && (
             <>
-              <div className="flex flex-col items-center gap-2">
+              <div className="flex flex-col items-center gap-1">
                 <GlitchText speed={1} enableShadows={true} enableOnHover={false}>
                   DataHub
                 </GlitchText>
@@ -34,25 +34,25 @@ const Index = () => {
               </div>
             </>
           )}
-          {viewState === 'json' && jsonData && <JsonDisplay data={jsonData} />}
-          
-          {viewState === 'glitch' && (
+          {viewState === "json" && jsonData && <JsonDisplay data={jsonData} />}
+
+          {viewState === "glitch" && (
             <div className="w-full max-w-4xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3 text-center">
-                /extract
-              </div>
-              <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3 text-center">
-                /translate
-              </div>
-              <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3 text-center">
-                /&lt;&gt;
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3 text-center">
+                  /extract
+                </div>
+                <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3 text-center">
+                  /translate
+                </div>
+                <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3 text-center">
+                  /&lt;&gt;
+                </div>
               </div>
             </div>
-          </div>
           )}
         </div>
-        
+
         <Button
           variant="ghost"
           size="icon"
