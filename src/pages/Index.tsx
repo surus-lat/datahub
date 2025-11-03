@@ -37,7 +37,8 @@ const Index = () => {
           )}
           {viewState === 'json' && <JsonDisplay />}
           
-          <div className="w-full max-w-4xl">
+          {viewState === 'glitch' && (
+            <div className="w-full max-w-4xl">
             <h2 className="font-mono text-foreground/50 text-sm mb-4 text-center">/&lt;task?&gt;</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3 text-center">
@@ -51,6 +52,7 @@ const Index = () => {
               </div>
             </div>
           </div>
+          )}
         </div>
         
         <Button
