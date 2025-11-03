@@ -1,18 +1,8 @@
-import { useEffect, useState } from 'react';
+interface JsonDisplayProps {
+  data: any;
+}
 
-const JsonDisplay = () => {
-  const [jsonData, setJsonData] = useState<any>(null);
-
-  useEffect(() => {
-    fetch('/core_data.json')
-      .then(res => res.json())
-      .then(data => setJsonData(data))
-      .catch(err => console.error('Error loading JSON:', err));
-  }, []);
-
-  if (!jsonData) {
-    return <div className="text-foreground">Loading...</div>;
-  }
+const JsonDisplay = ({ data }: JsonDisplayProps) => {
 
   const formatJson = (obj: any, indent = 0): JSX.Element[] => {
     const elements: JSX.Element[] = [];
@@ -63,7 +53,7 @@ const JsonDisplay = () => {
   return (
     <div className="w-full max-w-4xl p-8 overflow-auto max-h-screen">
       <pre className="font-mono text-sm" style={{ color: '#f8f8f2' }}>
-        {formatJson(jsonData)}
+        {formatJson(data)}
       </pre>
     </div>
   );

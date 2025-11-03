@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GlitchText from "@/components/GlitchText";
 import MatrixRain from "@/components/MatrixRain";
 import JsonDisplay from "@/components/JsonDisplay";
@@ -7,20 +7,14 @@ import { Code2 } from "lucide-react";
 
 const Index = () => {
   const [viewState, setViewState] = useState<'glitch' | 'json'>('glitch');
+  const [jsonData, setJsonData] = useState<any>(null);
 
-  const sampleData = {
-    datahub: {
-      version: "1.0.0",
-      status: "active",
-      nodes: [
-        { id: "node_001", type: "processor", status: "online" },
-        { id: "node_002", type: "storage", status: "online" },
-        { id: "node_003", type: "analytics", status: "processing" }
-      ],
-      connections: 42,
-      timestamp: new Date().toISOString()
-    }
-  };
+  useEffect(() => {
+    fetch('/core_data.json')
+      .then(res => res.json())
+      .then(data => setJsonData(data))
+      .catch(err => console.error('Error loading JSON:', err));
+  }, []);
 
   const cycleView = () => {
     setViewState(prev => prev === 'glitch' ? 'json' : 'glitch');
@@ -35,7 +29,7 @@ const Index = () => {
               DataHub
             </GlitchText>
           )}
-          {viewState === 'json' && <JsonDisplay />}
+          {viewState === 'json' && jsonData && <JsonDisplay data={jsonData} />}
           
           {viewState === 'glitch' && (
             <div className="w-full max-w-4xl">
