@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Code2 } from "lucide-react";
 
 const Index = () => {
-  const [viewState, setViewState] = useState<'glitch' | 'matrix' | 'json'>('glitch');
+  const [viewState, setViewState] = useState<'glitch' | 'json'>('glitch');
 
   const sampleData = {
     datahub: {
@@ -23,11 +23,7 @@ const Index = () => {
   };
 
   const cycleView = () => {
-    setViewState(prev => {
-      if (prev === 'glitch') return 'matrix';
-      if (prev === 'matrix') return 'json';
-      return 'glitch';
-    });
+    setViewState(prev => prev === 'glitch' ? 'json' : 'glitch');
   };
 
   return (
@@ -39,7 +35,6 @@ const Index = () => {
               DataHub
             </GlitchText>
           )}
-          {viewState === 'matrix' && <MatrixRain jsonData={sampleData} />}
           {viewState === 'json' && <JsonDisplay />}
           
           <div className="w-full max-w-4xl">
