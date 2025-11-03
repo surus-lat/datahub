@@ -62,7 +62,7 @@ const JsonDisplay = () => {
 
   return (
     <div className="w-full max-w-4xl p-8 overflow-auto max-h-screen">
-      <pre className="font-mono text-sm" style={{ color: '#f8f8f2', backgroundColor: '#282a36', padding: '1.5rem', borderRadius: '0.5rem' }}>
+      <pre className="font-mono text-sm" style={{ color: '#f8f8f2' }}>
         {formatJson(jsonData)}
       </pre>
     </div>
