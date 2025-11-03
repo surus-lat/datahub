@@ -25,15 +25,19 @@ const Index = () => {
       <div className="flex min-h-screen flex-col items-center justify-center px-8">
         <div className="flex flex-col items-center gap-8">
           {viewState === 'glitch' && (
-            <GlitchText speed={1} enableShadows={true} enableOnHover={false}>
-              DataHub
-            </GlitchText>
+            <>
+              <div className="flex flex-col items-center gap-2">
+                <GlitchText speed={1} enableShadows={true} enableOnHover={false}>
+                  DataHub
+                </GlitchText>
+                <h2 className="font-mono text-foreground/50 text-sm text-center">/&lt;task?&gt;</h2>
+              </div>
+            </>
           )}
           {viewState === 'json' && jsonData && <JsonDisplay data={jsonData} />}
           
           {viewState === 'glitch' && (
             <div className="w-full max-w-4xl">
-            <h2 className="font-mono text-foreground/50 text-sm mb-4 text-center">/&lt;task?&gt;</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3 text-center">
                 /extract
