@@ -26,7 +26,7 @@ const Index = () => {
         <div className="flex flex-col items-center gap-8">
           {viewState === "glitch" && (
             <>
-              <div className="flex flex-col items-center gap-1">
+              <div className="flex flex-col items-center gap-3">
                 <GlitchText speed={1} enableShadows={true} enableOnHover={false}>
                   DataHub
                 </GlitchText>
