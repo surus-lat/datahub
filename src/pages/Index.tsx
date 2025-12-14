@@ -26,11 +26,11 @@ const Index = () => {
         <div className="flex flex-col items-center gap-16">
           {viewState === "glitch" && (
             <>
-              <div className="flex flex-col items-center gap-1">
+              <div className="flex flex-col items-center">
                 <GlitchText speed={1} enableShadows={true} enableOnHover={false}>
                   DataHub
                 </GlitchText>
-                <p className="font-mono text-foreground/40 text-xs tracking-widest">| the missing data layer |</p>
+                <p className="font-mono text-foreground/40 text-xs tracking-widest -mt-1">| the missing data layer |</p>
               </div>
               
               <div className="flex flex-col items-center gap-8">
@@ -58,7 +58,7 @@ const Index = () => {
         <Button
           variant="outline"
           size="icon"
-          className="absolute top-4 right-4 h-10 w-10 border-border/50 text-foreground/70 hover:text-foreground hover:bg-foreground/10 hover:border-foreground/50 transition-all"
+          className="absolute top-4 right-4 h-10 w-10 border-foreground/50 text-foreground bg-foreground/10 hover:bg-foreground/20 transition-all"
           onClick={cycleView}
         >
           <Code2 className="h-5 w-5" />
