@@ -2,8 +2,18 @@
   "tasks": ["/extract", "/translate"],
   "datasets": {
     "flores": {
-      "task": "",
-      "domain": "none",
+      "task": "/translate",
+      "domain": "general",
+      "language": "multi"
+    },
+    "wmt22": {
+      "task": "/translate",
+      "domain": "news",
+      "language": "en-de"
+    },
+    "conll": {
+      "task": "/extract",
+      "domain": "ner",
       "language": "en"
     }
   }
