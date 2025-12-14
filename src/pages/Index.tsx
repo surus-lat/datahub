@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import GlitchText from "@/components/GlitchText";
-import MatrixRain from "@/components/MatrixRain";
 import JsonDisplay from "@/components/JsonDisplay";
+import ContributorsTicker from "@/components/ContributorsTicker";
+import SubmitDatasetDialog from "@/components/SubmitDatasetDialog";
 import { Button } from "@/components/ui/button";
 import { Code2 } from "lucide-react";
 
@@ -44,7 +45,9 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen bg-background">
-      <div className="flex min-h-screen flex-col items-center justify-center px-8">
+      <ContributorsTicker />
+      <SubmitDatasetDialog />
+      <div className="flex min-h-screen flex-col items-center justify-center px-8 pt-8">
         <div className="flex flex-col items-center gap-16">
           {viewState === "glitch" && (
             <>
