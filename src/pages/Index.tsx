@@ -5,9 +5,21 @@ import JsonDisplay from "@/components/JsonDisplay";
 import { Button } from "@/components/ui/button";
 import { Code2 } from "lucide-react";
 
+interface Dataset {
+  task: string;
+  domain: string;
+  language: string;
+}
+
+interface CoreData {
+  tasks: string[];
+  datasets: Record<string, Dataset>;
+}
+
 const Index = () => {
   const [viewState, setViewState] = useState<"glitch" | "json">("glitch");
-  const [jsonData, setJsonData] = useState<any>(null);
+  const [jsonData, setJsonData] = useState<CoreData | null>(null);
+  const [selectedTask, setSelectedTask] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/core_data.json")
@@ -20,6 +32,16 @@ const Index = () => {
     setViewState((prev) => (prev === "glitch" ? "json" : "glitch"));
   };
 
+  const handleTaskClick = (task: string) => {
+    setSelectedTask(selectedTask === task ? null : task);
+  };
+
+  const filteredDatasets = jsonData?.datasets
+    ? Object.entries(jsonData.datasets).filter(
+        ([_, dataset]) => dataset.task === selectedTask
+      )
+    : [];
+
   return (
     <div className="relative min-h-screen bg-background">
       <div className="flex min-h-screen flex-col items-center justify-center px-8">
@@ -27,7 +49,7 @@ const Index = () => {
           {viewState === "glitch" && (
             <>
               <div className="flex flex-col items-center">
-                <GlitchText speed={1} enableShadows={true} enableOnHover={false}>
+                <GlitchText speed={1} enableShadows={true} enableOnHover={true}>
                   DataHub
                 </GlitchText>
                 <p className="font-mono text-foreground/40 text-xs tracking-widest -mt-1">| the missing data layer |</p>
@@ -38,17 +60,52 @@ const Index = () => {
                 
                 <div className="w-full max-w-4xl">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3 text-center">
-                      /extract
-                    </div>
-                    <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3 text-center">
-                      /translate
-                    </div>
-                    <div className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer border border-border/30 rounded px-4 py-3 text-center">
+                    {jsonData?.tasks.map((task) => (
+                      <button
+                        key={task}
+                        onClick={() => handleTaskClick(task)}
+                        className={`font-mono text-xs transition-colors cursor-pointer border rounded px-4 py-3 text-center ${
+                          selectedTask === task
+                            ? "text-foreground border-foreground/50 bg-foreground/5"
+                            : "text-muted-foreground border-border/30 hover:text-foreground hover:border-border/50"
+                        }`}
+                      >
+                        {task}
+                      </button>
+                    ))}
+                    <button
+                      onClick={() => handleTaskClick("")}
+                      className={`font-mono text-xs transition-colors cursor-pointer border rounded px-4 py-3 text-center ${
+                        selectedTask === ""
+                          ? "text-foreground border-foreground/50 bg-foreground/5"
+                          : "text-muted-foreground border-border/30 hover:text-foreground hover:border-border/50"
+                      }`}
+                    >
                       /&lt;&gt;
-                    </div>
+                    </button>
                   </div>
                 </div>
+
+                {selectedTask !== null && filteredDatasets.length > 0 && (
+                  <div className="w-full max-w-4xl">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                      {filteredDatasets.map(([name, dataset]) => (
+                        <div
+                          key={name}
+                          className="font-mono text-xs border border-border/30 rounded px-4 py-3 space-y-1"
+                        >
+                          <div className="text-foreground">{name}</div>
+                          <div className="text-muted-foreground">
+                            domain: {dataset.domain || "—"}
+                          </div>
+                          <div className="text-muted-foreground">
+                            lang: {dataset.language || "—"}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </>
           )}
