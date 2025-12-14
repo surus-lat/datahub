@@ -26,9 +26,12 @@ const Index = () => {
         <div className="flex flex-col items-center gap-16">
           {viewState === "glitch" && (
             <>
-              <GlitchText speed={1} enableShadows={true} enableOnHover={false}>
-                DataHub
-              </GlitchText>
+              <div className="flex flex-col items-center gap-2">
+                <GlitchText speed={1} enableShadows={true} enableOnHover={false}>
+                  DataHub
+                </GlitchText>
+                <p className="font-mono text-foreground/40 text-xs tracking-widest">| the missing data layer |</p>
+              </div>
               
               <div className="flex flex-col items-center gap-8">
                 <h2 className="font-mono text-foreground/50 text-sm text-center">/&lt;task?&gt;</h2>
