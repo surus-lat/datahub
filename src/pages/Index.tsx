@@ -26,7 +26,7 @@ const Index = () => {
         <div className="flex flex-col items-center gap-16">
           {viewState === "glitch" && (
             <>
-              <div className="flex flex-col items-center gap-2">
+              <div className="flex flex-col items-center gap-1">
                 <GlitchText speed={1} enableShadows={true} enableOnHover={false}>
                   DataHub
                 </GlitchText>
@@ -56,12 +56,12 @@ const Index = () => {
         </div>
 
         <Button
-          variant="ghost"
+          variant="outline"
           size="icon"
-          className="absolute top-4 right-4 h-8 w-8 text-foreground/50 hover:text-foreground hover:bg-foreground/10"
+          className="absolute top-4 right-4 h-10 w-10 border-border/50 text-foreground/70 hover:text-foreground hover:bg-foreground/10 hover:border-foreground/50 transition-all"
           onClick={cycleView}
         >
-          <Code2 className="h-4 w-4" />
+          <Code2 className="h-5 w-5" />
         </Button>
       </div>
     </div>
