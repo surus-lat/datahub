@@ -31,7 +31,7 @@ const ContributorsTicker = () => {
   const duplicatedContributors = [...contributors, ...contributors];
 
   return (
-    <div className="absolute top-0 left-0 right-0 overflow-hidden py-2 border-b border-border/20">
+    <div className="absolute top-12 left-0 right-0 overflow-hidden py-2 border-b border-border/20">
       <div ref={tickerRef} className="flex whitespace-nowrap">
         {duplicatedContributors.map((name, i) => (
           <span
